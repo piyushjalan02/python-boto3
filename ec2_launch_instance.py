@@ -4,7 +4,9 @@
 import boto3
 
 ec2 = boto3.resource('ec2', region_name='ap-southeast-1')
-launch_instances = ec2.create_instances(MinCount=1, MaxCount=1, ImageId='ami-8765849', InstanceType='t2.nano', SubnetId='subnet-ah674j8d8') 
+launch_instances = ec2.create_instances(
+  MinCount=1, MaxCount=1, ImageId='ami-8765849',
+  InstanceType='t2.nano', SubnetId='subnet-ah674j8d8') 
 for instance in launch_instances:
   print("Waiting for the instance to be running state")
   instance.wait_until_running()
